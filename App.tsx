@@ -64,7 +64,9 @@ export default function App() {
       setHasPermission(status === 'granted');
       await initialiseTensorflow();
       setNet(await mobilenet.load({ version: 1, alpha: 0.25 }));
-      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+
+      //for camera rotation
+      // await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
     })();
   }, []);
 
@@ -79,32 +81,37 @@ export default function App() {
   }
 
   return (
-    // <View style={styles.container}>
-    //   <TensorCamera
-    //     style={styles.camera}
-    //     onReady={handleCameraStream}
-    //     type={Camera.Constants.Type.back}
-    //     cameraTextureHeight={textureDims.height}
-    //     cameraTextureWidth={textureDims.width}
-    //     resizeHeight={200}
-    //     resizeWidth={152}
-    //     resizeDepth={3}
-    //     autorender={true} useCustomShadersToResize={false}/>
-    //   <View style={styles.text}>
-    //   {detections.map((detection, index) =>
-    //       <Text key={index}>{detection}</Text>
-    //   )}
-    //   </View>
-    // </View>
+    <View style={styles.container}>
+      <TensorCamera
+        style={styles.camera}
+        onReady={handleCameraStream}
+        type={Camera.Constants.Type.back}
+        cameraTextureHeight={textureDims.height}
+        cameraTextureWidth={textureDims.width}
+        resizeHeight={200}
+        resizeWidth={152}
+        resizeDepth={3}
+        autorender={true} useCustomShadersToResize={false}/>
+      <View style={styles.text}>
+      {detections.map((detection, index) =>
+          <Text key={index}>{detection}</Text>
+      )}
+      </View>
+    </View>
+
+    //Simulation lesson view 
+
 
     //@ts-ignore
     // <View style={styles.container}>
-      <WebView
-        source={{html: '<iframe src="https://phet.colorado.edu/sims/html/density/latest/density_en.html" width="100%" height="100%" allowFullScreen: {true}></iframe></WebView>'}}
-        style={styles.container}
-    />
+    //   <WebView
+    //     source={{html: '<iframe src="https://phet.colorado.edu/sims/html/density/latest/density_en.html" width="100%" height="100%" allowFullScreen: {true}></iframe></WebView>'}}
+    //     style={styles.container}
+    // />
     // </View>
 
+
+    //Embeding tiktok Video View
     // <>
     //   <blockquote className="tiktok-embed" cite="https://www.tiktok.com/@quttaii/video/7069006975203347713" data-video-id="7069006975203347713">
     //     <section>
